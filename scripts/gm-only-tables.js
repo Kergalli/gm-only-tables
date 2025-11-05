@@ -40,15 +40,15 @@ class GMOnlyTables {
     // Don't add if already exists
     if ($html.find("#gm-only-checkbox").length > 0) return;
 
-    // Create the checkbox HTML to match existing Foundry checkbox style
+    // Create the checkbox HTML - NO name attribute to avoid form processing
     const checkboxHtml = `
       <div class="form-group">
         <label>${game.i18n.localize("GMONLY.ShowResultsToGMOnly")}</label>
-        <input type="checkbox" id="gm-only-checkbox" name="flags.${
-          this.MODULE_ID
-        }.${this.FLAG_KEY}" ${isGMOnly ? "checked" : ""}>
+        <input type="checkbox" id="gm-only-checkbox" ${isGMOnly ? "checked" : ""}>
       </div>
     `;
+
+    let injected = false;
 
     // Insert after Display Roll Formula to Chat checkbox
     const displayFormulaCheckbox = $html.find('input[name="displayRoll"]');
@@ -56,66 +56,51 @@ class GMOnlyTables {
       const formGroup = displayFormulaCheckbox.closest(".form-group");
       if (formGroup.length > 0) {
         formGroup.after(checkboxHtml);
-
-        // Handle checkbox changes
-        $html
-          .find("#gm-only-checkbox")
-          .off("change")
-          .on("change", function () {
-            const isChecked = $(this).is(":checked");
-            table.setFlag(
-              GMOnlyTables.MODULE_ID,
-              GMOnlyTables.FLAG_KEY,
-              isChecked
-            );
-          });
-        return;
+        injected = true;
       }
     }
 
     // Fallback: Insert in Summary tab
-    const summaryTab = $html.find(
-      '[data-tab="summary"], .tab[data-tab="summary"]'
-    );
-    if (summaryTab.length > 0) {
-      const lastFormGroup = summaryTab.find(".form-group").last();
-      if (lastFormGroup.length > 0) {
-        lastFormGroup.after(checkboxHtml);
-
-        // Handle checkbox changes
-        $html
-          .find("#gm-only-checkbox")
-          .off("change")
-          .on("change", function () {
-            const isChecked = $(this).is(":checked");
-            table.setFlag(
-              GMOnlyTables.MODULE_ID,
-              GMOnlyTables.FLAG_KEY,
-              isChecked
-            );
-          });
+    if (!injected) {
+      const summaryTab = $html.find('[data-tab="summary"], .tab[data-tab="summary"]');
+      if (summaryTab.length > 0) {
+        const lastFormGroup = summaryTab.find(".form-group").last();
+        if (lastFormGroup.length > 0) {
+          lastFormGroup.after(checkboxHtml);
+          injected = true;
+        }
       }
-    } else {
-      // Final fallback for name input if summary tab not found
+    }
+
+    // Final fallback
+    if (!injected) {
       const nameInput = $html.find('input[name="name"]');
       if (nameInput.length > 0) {
         const formGroup = nameInput.closest(".form-group");
         if (formGroup.length > 0) {
           formGroup.after(checkboxHtml);
-
-          $html
-            .find("#gm-only-checkbox")
-            .off("change")
-            .on("change", function () {
-              const isChecked = $(this).is(":checked");
-              table.setFlag(
-                GMOnlyTables.MODULE_ID,
-                GMOnlyTables.FLAG_KEY,
-                isChecked
-              );
-            });
+          injected = true;
         }
       }
+    }
+
+    // Set up event handler
+    if (injected) {
+      setTimeout(() => {
+        const $checkbox = $html.find("#gm-only-checkbox");
+        
+        $checkbox.off("change.gmonly").on("change.gmonly", function(event) {
+          const isChecked = $(this).is(":checked");
+          
+          // Use table.update() with render:false to prevent form interference
+          const updateData = {};
+          updateData[`flags.${GMOnlyTables.MODULE_ID}.${GMOnlyTables.FLAG_KEY}`] = isChecked;
+          
+          table.update(updateData, { render: false }).catch(error => {
+            console.error(`${GMOnlyTables.MODULE_ID}: Error updating flag:`, error);
+          });
+        });
+      }, 0);
     }
   }
 
