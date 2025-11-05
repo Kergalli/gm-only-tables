@@ -1,0 +1,22 @@
+{
+  "name": "gm-only-tables",
+  "version": "1.0.0",
+  "description": "Foundry VTT module for GM-only table rolls",
+  "main": "scripts/gm-only-tables.js",
+  "scripts": {
+    "lint": "eslint scripts/",
+    "format": "prettier --write scripts/"
+  },
+  "keywords": [
+    "foundry-vtt",
+    "module",
+    "tabletop",
+    "rpg"
+  ],
+  "author": "Kergalli",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0"
+  }
+}
