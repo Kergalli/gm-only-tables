@@ -5,21 +5,22 @@
   "version": "1.0.0",
   "compatibility": {
     "minimum": "13",
-    "verified": "13"
+    "verified": "13.348"
   },
   "authors": [
     {
-      "name": "Your Name"
+      "name": "Matthias Weeks"
     }
   ],
-  "esmodules": [
-    "scripts/gm-only-tables.js"
-  ],
+  "scripts": ["scripts/gm-only-tables.js"],
   "languages": [
     {
       "lang": "en",
       "name": "English",
       "path": "lang/en.json"
     }
-  ]
+  ],
+  "url": "https://github.com/Kergalli/gm-only-tables",
+  "manifest": "",
+  "download": ""
 }
