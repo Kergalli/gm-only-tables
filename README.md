@@ -18,13 +18,13 @@ A Foundry VTT v13 module that adds a "GM Only" checkbox to rollable tables, allo
 
 ## Usage
 
-1. Open any Rollable Table's configuration sheet (right-click → Configure)
+1. Open any Rollable Table
 2. Navigate to the Summary tab
-3. You'll see a new "GM Only" checkbox near the top
+3. You'll see a new "Show Results to GM Only" checkbox near the bottom
 4. Check the box to make all rolls from this table whisper to GMs
 5. Save the table configuration
 
-Any future rolls from tables with "GM Only" enabled will be private to GMs.
+Any future rolls from tables with "Show Results to GM Only" enabled will be private to GMs.
 
 ## Compatibility
 
@@ -33,19 +33,15 @@ Any future rolls from tables with "GM Only" enabled will be private to GMs.
 - Works with most table-related modules
 - Lightweight implementation with minimal performance impact
 
-## Technical Details
+## Changelog
 
-The module uses a dual approach for maximum reliability:
-1. **Primary Method**: Wraps `RollTable.prototype.roll()` to set private roll mode and whisper options
-2. **Backup Method**: Hooks into `preCreateChatMessage` to modify chat message whisper settings
+See [CHANGELOG.md](CHANGELOG.md) for detailed version history.
 
-This ensures GM Only functionality works across different table rolling scenarios in v13.
+## Contributing
 
-## Support
-
-This module replaces the "GM Only" functionality from Better Rolltables (which only supports Foundry v12 and earlier) for users who have upgraded to v13.
+Found a bug or have a suggestion? Please [open an issue](https://github.com/Kergalli/gm-only-tables/issues) on GitHub.
 
 ## License
 
-This module is provided as-is for personal and educational use.
+This module is available under the MIT License. See the LICENSE file for details.
 
