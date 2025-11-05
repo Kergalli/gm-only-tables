@@ -1,47 +1,68 @@
-# GM Only Tables
+# 🎲 GM Only Tables
 
-A Foundry VTT v13 module that adds a "GM Only" checkbox to rollable tables, allowing you to make table rolls always whisper to the GM instead of posting publicly.
+[![Foundry Version](https://img.shields.io/badge/Foundry-V13-informational)](https://foundryvtt.com/)
+[![Module Version](https://img.shields.io/badge/Version-1.0.0-brightgreen)](https://github.com/Kergalli/gm-only-tables/releases)
+[![License](https://img.shields.io/badge/License-MIT-green)](https://github.com/Kergalli/gm-only-tables/blob/main/LICENSE)
 
-## Features
+A lightweight Foundry VTT v13 module that adds a "GM Only" checkbox to rollable tables, allowing you to make table rolls always whisper to the GM instead of posting publicly. Perfect for secret rolls, random encounters, and maintaining narrative suspense.
 
-- Adds a "GM Only" checkbox to the RollTable Summary tab
-- When enabled, all rolls from that table are automatically whispered to GMs
-- Persists the setting with each table (saved with world data)
-- Clean, unobtrusive UI integration that matches Foundry's design
-- Fully compatible with Foundry v13's Application V2 framework
+## ✨ Key Features
 
-## Installation
+- **Private Table Rolls**: Make any rollable table whisper results exclusively to GMs
+- **Persistent Settings**: GM Only preference is saved with each table individually
+- **V13 Compatible**: Fully compatible with Foundry v13's Application V2 framework
 
-1. Extract the module to your Foundry `Data/modules/` directory
-2. Restart Foundry VTT
-3. Enable the module in your world's Module Management settings
+## 📋 System Requirements
 
-## Usage
+- **Foundry VTT**: V13+ (for V12 support, see compatibility notes)
+- **Game System**: System agnostic - works with any game system
+- **Dependencies**: None
 
-1. Open any Rollable Table
-2. Navigate to the Summary tab
-3. You'll see a new "Show Results to GM Only" checkbox near the bottom
-4. Check the box to make all rolls from this table whisper to GMs
-5. Save the table configuration
+## 🚀 Installation
 
-Any future rolls from tables with "Show Results to GM Only" enabled will be private to GMs.
+### From Foundry
 
-## Compatibility
+1. Open Foundry VTT and go to the **Add-on Modules** tab
+2. Click **Install Module**
+3. Paste this manifest URL: `https://github.com/Kergalli/gm-only-tables/releases/latest/download/module.json`
+4. Click **Install**
 
-- **Required**: Foundry VTT v13 or higher
-- **Incompatible**: Foundry v12 and earlier (due to Application V2 framework changes)
-- Works with most table-related modules
-- Lightweight implementation with minimal performance impact
+### Manual Installation
 
-## Changelog
+1. Download the latest release from the [GitHub repository](https://github.com/Kergalli/gm-only-tables)
+2. Extract the zip file to your `Data/modules/` directory
+3. Restart Foundry VTT
+4. Enable the module in your world's **Manage Modules** settings
+
+## ⚙️ Usage
+
+### Setting Up GM Only Tables
+
+1. **Open any Rollable Table**
+2. **Navigate to the Summary tab**
+3. **Find the "Show Results to GM Only" checkbox** near the bottom of the form
+4. **Check the box** to make all rolls from this table whisper to GMs
+5. **Update Roll Table** to save changes
+
+### ✅ Foundry V13 Compatibility
+
+| Foundry Version | Module Support | Notes |
+|-----------------|----------------|-------|
+| **V13+** | ✅ Full Support | Recommended version with Application V2 compatibility |
+| **V12** | ❌ Not Compatible | Use something like Better Rolltables for similar V12 functionality |
+
+## 📝 Changelog
 
 See [CHANGELOG.md](CHANGELOG.md) for detailed version history.
 
-## Contributing
+## 🤝 Contributing
 
 Found a bug or have a suggestion? Please [open an issue](https://github.com/Kergalli/gm-only-tables/issues) on GitHub.
 
-## License
+## 📄 License
 
-This module is available under the MIT License. See the LICENSE file for details.
+This module is available under the MIT License. See the [LICENSE](LICENSE) file for details.
 
+## 🎯 Credits & Attribution
+
+**Inspiration**: [Better Rolltables](https://foundryvtt.com/packages/better-rolltables/) module by Felix Müller
