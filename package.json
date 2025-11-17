@@ -1,6 +1,6 @@
 {
   "name": "gm-only-tables",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Foundry VTT module for GM-only table rolls",
   "main": "scripts/gm-only-tables.js",
   "scripts": {
