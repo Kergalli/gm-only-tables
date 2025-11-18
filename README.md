@@ -1,7 +1,7 @@
 # 🎲 GM Only Tables
 
 [![Foundry Version](https://img.shields.io/badge/Foundry-V13-informational)](https://foundryvtt.com/)
-[![Module Version](https://img.shields.io/badge/Version-1.0.1-brightgreen)](https://github.com/Kergalli/gm-only-tables/releases)
+[![Module Version](https://img.shields.io/badge/Version-1.0.2-brightgreen)](https://github.com/Kergalli/gm-only-tables/releases)
 [![License](https://img.shields.io/badge/License-MIT-green)](https://github.com/Kergalli/gm-only-tables/blob/main/LICENSE)
 
 A lightweight Foundry VTT v13 module that adds a "GM Only" checkbox to rollable tables, allowing you to make table rolls always whisper to the GM instead of posting publicly. Perfect for secret rolls, random encounters, and maintaining narrative suspense.
@@ -9,6 +9,8 @@ A lightweight Foundry VTT v13 module that adds a "GM Only" checkbox to rollable 
 ## ✨ Key Features
 
 - **Private Table Rolls**: Make any rollable table whisper results exclusively to GMs
+- **True Blind Rolls**: Players see blind roll indicators ("???") when rolling on GM-only tables - they never see the actual results
+- **Works for All Users**: Whether the GM or a player rolls on a GM-only table, only GMs see the results
 - **Persistent Settings**: GM Only preference is saved with each table individually
 - **V13 Compatible**: Fully compatible with Foundry v13's Application V2 framework
 
@@ -24,7 +26,7 @@ A lightweight Foundry VTT v13 module that adds a "GM Only" checkbox to rollable 
 
 1. Open Foundry VTT and go to the **Add-on Modules** tab
 2. Click **Install Module**
-3. Paste this manifest URL: `https://github.com/Kergalli/gm-only-tables/releases/download/v1.0.1/module.json`
+3. Paste this manifest URL: `https://github.com/Kergalli/gm-only-tables/releases/download/v1.0.2/module.json`
 4. Click **Install**
 
 ### Manual Installation
@@ -43,6 +45,18 @@ A lightweight Foundry VTT v13 module that adds a "GM Only" checkbox to rollable 
 3. **Find the "Show Results to GM Only" checkbox** near the bottom of the form
 4. **Check the box** to make all rolls from this table whisper to GMs
 5. **Update Roll Table** to save changes
+
+### How It Works
+
+When a table is marked as "GM Only":
+
+- **GM rolls on the table**: Only GMs see the actual results in chat
+- **Player rolls on the table**: 
+  - Players see a blind roll indicator (usually displayed as "???")
+  - Only GMs see the actual table results
+  - The roll is completely hidden from all players
+
+This ensures complete secrecy for random encounters, loot tables, plot twists, and any other tables where you want to maintain narrative surprise!
 
 ### ✅ Foundry V13 Compatibility
 

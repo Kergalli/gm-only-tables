@@ -120,7 +120,7 @@ class GMOnlyTables {
 
       if (isGMOnly) {
         const gmUsers = game.users.filter((u) => u.isGM).map((u) => u.id);
-        document.updateSource({ whisper: gmUsers });
+        document.updateSource({ whisper: gmUsers, blind: true });
       }
     } catch (error) {
       console.error(
@@ -144,13 +144,14 @@ class GMOnlyTables {
 
       if (isGMOnly) {
         if (!options.rollMode) {
-          options.rollMode = CONST.DICE_ROLL_MODES.PRIVATE;
+          options.rollMode = CONST.DICE_ROLL_MODES.BLIND;
         }
 
         if (!options.chatMessage) options.chatMessage = {};
         if (!options.chatMessage.whisper) {
           const gmUsers = game.users.filter((u) => u.isGM).map((u) => u.id);
           options.chatMessage.whisper = gmUsers;
+          options.chatMessage.blind = true;
         }
       }
 

@@ -2,6 +2,15 @@
 
 All notable changes to the GM Only Tables module will be documented in this file.
 
+## [1.0.2] - 2025-01-18
+
+### Fixed
+- Fixed bug where players could see results when rolling on GM-only tables
+- Added explicit `blind: true` flag to chat messages to ensure complete player invisibility
+- Players now see blind roll indicator ("???") instead of actual results when rolling on GM-only tables
+
+---
+
 ## [1.0.1] - 2025-01-17
 
 ### Fixed
