@@ -1,10 +1,10 @@
 # 🎲 GM Only Tables
 
-[![Foundry Version](https://img.shields.io/badge/Foundry-V13-informational)](https://foundryvtt.com/)
-[![Module Version](https://img.shields.io/badge/Version-1.0.2-brightgreen)](https://github.com/Kergalli/gm-only-tables/releases)
+[![Foundry Version](https://img.shields.io/badge/Foundry-V14-informational)](https://foundryvtt.com/)
+[![Module Version](https://img.shields.io/badge/Version-1.1.0-brightgreen)](https://github.com/Kergalli/gm-only-tables/releases)
 [![License](https://img.shields.io/badge/License-MIT-green)](https://github.com/Kergalli/gm-only-tables/blob/main/LICENSE)
 
-A lightweight Foundry VTT v13 module that adds a "GM Only" checkbox to rollable tables, allowing you to make table rolls always whisper to the GM instead of posting publicly. Perfect for secret rolls, random encounters, and maintaining narrative suspense.
+A lightweight Foundry VTT v14 module that adds a "GM Only" checkbox to rollable tables, allowing you to make table rolls always whisper to the GM instead of posting publicly. Perfect for secret rolls, random encounters, and maintaining narrative suspense.
 
 ## ✨ Key Features
 
@@ -16,7 +16,7 @@ A lightweight Foundry VTT v13 module that adds a "GM Only" checkbox to rollable 
 
 ## 📋 System Requirements
 
-- **Foundry VTT**: V13+ (for V12 support, see compatibility notes)
+- **Foundry VTT**: V14+ (for V13 support, use v1.0.2)
 - **Game System**: System agnostic - works with any game system
 - **Dependencies**: None
 
@@ -26,7 +26,7 @@ A lightweight Foundry VTT v13 module that adds a "GM Only" checkbox to rollable 
 
 1. Open Foundry VTT and go to the **Add-on Modules** tab
 2. Click **Install Module**
-3. Paste this manifest URL: `https://github.com/Kergalli/gm-only-tables/releases/download/v1.0.2/module.json`
+3. Paste this manifest URL: `https://github.com/Kergalli/gm-only-tables/releases/download/v1.1.0/module.json`
 4. Click **Install**
 
 ### Manual Installation
@@ -51,19 +51,20 @@ A lightweight Foundry VTT v13 module that adds a "GM Only" checkbox to rollable 
 When a table is marked as "GM Only":
 
 - **GM rolls on the table**: Only GMs see the actual results in chat
-- **Player rolls on the table**: 
+- **Player rolls on the table**:
   - Players see a blind roll indicator (usually displayed as "???")
   - Only GMs see the actual table results
   - The roll is completely hidden from all players
 
 This ensures complete secrecy for random encounters, loot tables, plot twists, and any other tables where you want to maintain narrative surprise!
 
-### ✅ Foundry V13 Compatibility
+### ✅ Foundry Compatibility
 
-| Foundry Version | Module Support | Notes |
-|-----------------|----------------|-------|
-| **V13+** | ✅ Full Support | Recommended version with Application V2 compatibility |
-| **V12** | ❌ Not Compatible | Use something like Better Rolltables for similar V12 functionality |
+| Foundry Version | Module Version    | Notes                                               |
+| --------------- | ----------------- | --------------------------------------------------- |
+| **V14+**        | ✅ v1.1.0         | Current version                                     |
+| **V13**         | ✅ v1.0.2         | Use the older release                               |
+| **V12**         | ❌ Not Compatible | Use Better Rolltables for similar V12 functionality |
 
 ## 📝 Changelog
 

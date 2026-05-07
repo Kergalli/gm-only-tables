@@ -1,6 +1,11 @@
 /**
- * GM Only Tables Module for Foundry v13
+ * GM Only Tables Module for Foundry v14
  * Adds a checkbox to rollable tables to make all rolls whisper to GM
+ *
+ * v1.1.0 - v14 compatibility release
+ * - Single enforcement point via preCreateChatMessage hook
+ * - Uses explicit whisper + blind flags (v14 Chat Message Visibility approach)
+ *   rather than the deprecated CONST.DICE_ROLL_MODES constant (removed in V16)
  */
 
 class GMOnlyTables {
@@ -8,10 +13,13 @@ class GMOnlyTables {
   static FLAG_KEY = "gmOnly";
 
   static init() {
-    // Hook into v13 RollTable sheet rendering
+    // Hook into RollTable sheet rendering to inject the GM-only checkbox
     Hooks.on("renderRollTableSheet", this.onRenderRollTableSheet.bind(this));
 
-    // Hook into table rolls to modify behavior - dual approach for reliability
+    // Hook into chat message creation to enforce GM-only whispers.
+    // This is the sole enforcement point in v1.1.0 - v14's bug fixes
+    // (#13792, #13902, #14258) made this reliable enough to remove the
+    // RollTable.prototype.roll wrapper that was needed in v13.
     Hooks.on("preCreateChatMessage", this.onPreCreateChatMessage.bind(this));
   }
 
@@ -28,13 +36,13 @@ class GMOnlyTables {
    * Add GM Only checkbox to the RollTable Summary tab
    */
   static addCheckboxToSheet(app, html, context) {
-    const document = app.document || app.object;
+    const document = app.document;
     if (!document || document.documentName !== "RollTable") return;
 
     const table = document;
     const isGMOnly = table.getFlag(this.MODULE_ID, this.FLAG_KEY) || false;
 
-    // Convert html to jQuery if it's a raw DOM element (v13 Application V2)
+    // Convert html to jQuery if it's a raw DOM element (Application V2)
     const $html = html instanceof jQuery ? html : $(html);
 
     // Don't add if already exists
@@ -62,7 +70,9 @@ class GMOnlyTables {
 
     // Fallback: Insert in Summary tab
     if (!injected) {
-      const summaryTab = $html.find('[data-tab="summary"], .tab[data-tab="summary"]');
+      const summaryTab = $html.find(
+        '[data-tab="summary"], .tab[data-tab="summary"]',
+      );
       if (summaryTab.length > 0) {
         const lastFormGroup = summaryTab.find(".form-group").last();
         if (lastFormGroup.length > 0) {
@@ -88,16 +98,22 @@ class GMOnlyTables {
     if (injected) {
       setTimeout(() => {
         const $checkbox = $html.find("#gm-only-checkbox");
-        
-        $checkbox.off("change.gmonly").on("change.gmonly", function(event) {
+
+        $checkbox.off("change.gmonly").on("change.gmonly", function (event) {
           const isChecked = $(this).is(":checked");
-          
+
           // Use table.update() with render:false to prevent form interference
+          // and avoid unwanted sheet re-renders (per v14 migration guidance)
           const updateData = {};
-          updateData[`flags.${GMOnlyTables.MODULE_ID}.${GMOnlyTables.FLAG_KEY}`] = isChecked;
-          
-          table.update(updateData, { render: false }).catch(error => {
-            console.error(`${GMOnlyTables.MODULE_ID}: Error updating flag:`, error);
+          updateData[
+            `flags.${GMOnlyTables.MODULE_ID}.${GMOnlyTables.FLAG_KEY}`
+          ] = isChecked;
+
+          table.update(updateData, { render: false }).catch((error) => {
+            console.error(
+              `${GMOnlyTables.MODULE_ID}: Error updating flag:`,
+              error,
+            );
           });
         });
       }, 0);
@@ -105,7 +121,12 @@ class GMOnlyTables {
   }
 
   /**
-   * Intercept chat messages from table rolls and modify whisper behavior
+   * Intercept chat messages from table rolls and enforce GM-only visibility.
+   *
+   * Uses explicit `whisper` array + `blind: true` flags directly on the message,
+   * which is the most reliable approach across all roll paths (sheet UI, API
+   * calls, macros, "Draw" button). This is aligned with v14's Chat Message
+   * Visibility Modes and avoids the deprecated CONST.DICE_ROLL_MODES constant.
    */
   static onPreCreateChatMessage(document, data, options, userId) {
     try {
@@ -125,43 +146,13 @@ class GMOnlyTables {
     } catch (error) {
       console.error(
         `${this.MODULE_ID}: Error in onPreCreateChatMessage`,
-        error
+        error,
       );
     }
-  }
-
-  /**
-   * Hook into RollTable.roll() directly for primary whisper control
-   */
-  static wrapRollTableRoll() {
-    if (RollTable.prototype._originalRoll) return;
-    RollTable.prototype._originalRoll = RollTable.prototype.roll;
-    RollTable.prototype.roll = async function (options = {}) {
-      const isGMOnly = this.getFlag(
-        GMOnlyTables.MODULE_ID,
-        GMOnlyTables.FLAG_KEY
-      );
-
-      if (isGMOnly) {
-        if (!options.rollMode) {
-          options.rollMode = CONST.DICE_ROLL_MODES.BLIND;
-        }
-
-        if (!options.chatMessage) options.chatMessage = {};
-        if (!options.chatMessage.whisper) {
-          const gmUsers = game.users.filter((u) => u.isGM).map((u) => u.id);
-          options.chatMessage.whisper = gmUsers;
-          options.chatMessage.blind = true;
-        }
-      }
-
-      return this._originalRoll.call(this, options);
-    };
   }
 }
 
 // Initialize the module
 Hooks.once("init", () => {
   GMOnlyTables.init();
-  GMOnlyTables.wrapRollTableRoll();
 });
