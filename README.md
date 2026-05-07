@@ -12,7 +12,7 @@ A lightweight Foundry VTT v14 module that adds a "GM Only" checkbox to rollable 
 - **True Blind Rolls**: Players see blind roll indicators ("???") when rolling on GM-only tables - they never see the actual results
 - **Works for All Users**: Whether the GM or a player rolls on a GM-only table, only GMs see the results
 - **Persistent Settings**: GM Only preference is saved with each table individually
-- **V13 Compatible**: Fully compatible with Foundry v13's Application V2 framework
+- **V14 Native**: Built for Foundry v14, with full Application V2 and pop-out window support
 
 ## 📋 System Requirements
 
