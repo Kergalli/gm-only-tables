@@ -1,7 +1,7 @@
 # 🎲 GM Only Tables
 
 [![Foundry Version](https://img.shields.io/badge/Foundry-V14-informational)](https://foundryvtt.com/)
-[![Module Version](https://img.shields.io/badge/Version-1.1.0-brightgreen)](https://github.com/Kergalli/gm-only-tables/releases)
+[![Module Version](https://img.shields.io/badge/Version-1.1.1-brightgreen)](https://github.com/Kergalli/gm-only-tables/releases)
 [![License](https://img.shields.io/badge/License-MIT-green)](https://github.com/Kergalli/gm-only-tables/blob/main/LICENSE)
 
 A lightweight Foundry VTT v14 module that adds a "GM Only" checkbox to rollable tables, allowing you to make table rolls always whisper to the GM instead of posting publicly. Perfect for secret rolls, random encounters, and maintaining narrative suspense.
@@ -62,7 +62,7 @@ This ensures complete secrecy for random encounters, loot tables, plot twists, a
 
 | Foundry Version | Module Version    | Notes                                               |
 | --------------- | ----------------- | --------------------------------------------------- |
-| **V14+**        | ✅ v1.1.0         | Current version                                     |
+| **V14+**        | ✅ v1.1.1         | Current version                                     |
 | **V13**         | ✅ v1.0.2         | Use the older release                               |
 | **V12**         | ❌ Not Compatible | Use Better Rolltables for similar V12 functionality |
 

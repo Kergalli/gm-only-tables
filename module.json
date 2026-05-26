@@ -2,10 +2,10 @@
   "id": "gm-only-tables",
   "title": "GM Only Tables",
   "description": "Adds a checkbox to rollable tables to make rolls always whisper to GM",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "compatibility": {
     "minimum": "14",
-    "verified": "14.361"
+    "verified": "14.363"
   },
   "authors": [
     {
@@ -21,6 +21,6 @@
     }
   ],
   "url": "https://github.com/Kergalli/gm-only-tables",
-  "manifest": "https://github.com/Kergalli/gm-only-tables/releases/download/v1.1.0/module.json",
-  "download": "https://github.com/Kergalli/gm-only-tables/releases/download/v1.1.0/module.zip"
+  "manifest": "https://github.com/Kergalli/gm-only-tables/releases/download/v1.1.1/module.json",
+  "download": "https://github.com/Kergalli/gm-only-tables/releases/download/v1.1.1/module.zip"
 }

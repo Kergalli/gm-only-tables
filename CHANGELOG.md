@@ -2,6 +2,20 @@
 
 All notable changes to the GM Only Tables module will be documented in this file.
 
+## [1.1.1] - 2026-05-26
+
+### Fixed
+- "Show Results to GM Only" checkbox now appears on the D&D 5e system's
+  custom RollTable sheet (RollTableSheet5e). Previously the module only
+  listened for the core renderRollTableSheet hook and used an exact-match
+  constructor.name check, both of which excluded the 5e sheet class.
+
+### Changed
+- Added more defensive injection fallbacks so the checkbox lands in a
+  sensible spot on system-customized RollTable sheets.
+
+---
+
 ## [1.1.0] - 2026-05-07
 
 ### Changed
